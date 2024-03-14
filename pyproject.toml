@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "psonoclient"
+version = "0.1.0"
+description = "A CLI client for the Psono password manager, written in Python, usable for scripting purposes."
+authors = [
+    "Nicolas Göddel <n.goeddel@openinfrastructure.de>"
+]
+maintainers = [
+    "Nicolas Göddel <n.goeddel@openinfrastructure.de>"
+]
+license = "GNU General Public License v3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.31.0"
+pynacl = "^1.5.0"
+pyyaml = "^6.0.1"
+urllib3 = "<2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+psono = 'psonoclient.cli:main'

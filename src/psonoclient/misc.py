@@ -2,6 +2,8 @@
 This file contains some deprecated stuff and might be deleted in the future.
 """
 
+import yaml
+
 def yprint(var):
     print(yaml.safe_dump(var, indent=2))
 

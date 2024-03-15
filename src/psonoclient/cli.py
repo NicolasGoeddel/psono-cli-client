@@ -4,6 +4,7 @@ import sys
 import requests
 from urllib3.exceptions import InsecureRequestWarning
 import nacl.exceptions
+from argparse import ArgumentError
 
 import yaml
 import json
@@ -77,7 +78,7 @@ def main():
 
     try:
         parser.check()
-    except argparse.ArgumentError as e:
+    except ArgumentError as e:
         print(e.message)
         sys.exit(1)
 

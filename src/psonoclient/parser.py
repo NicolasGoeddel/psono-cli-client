@@ -155,18 +155,18 @@ class CliParser():
         # users
         commands.add_parser(
             'users',
-            help="Shows all the users that are known to this account."
+            help="Shows all the users that are known to this account (requires unrestricted access)."
         )
         # settings
         commands.add_parser(
             'settings',
-            help="Shows all the settings of this account."
+            help="Shows all the settings of this account (requires unrestricted access)."
         )
 
         # ls [<folder>] [--type <folder|item>]
         cmd_ls = commands.add_parser(
             'ls',
-            help="List the entries in the password datastore."
+            help="List the entries in the password datastore (requires unrestricted access)."
         )
         cmd_ls.add_argument(
             '--type', '-e',

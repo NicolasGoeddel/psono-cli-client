@@ -64,9 +64,9 @@ Commands:
   {version,info,users,settings,ls,get}
     version             Show the client version.
     info                Shows some information about the server.
-    users               Shows all the users that are known to this account.
-    settings            Shows all the settings of this account.
-    ls                  List the entries in the password datastore.
+    users               Shows all the users that are known to this account (requires unrestricted access).
+    settings            Shows all the settings of this account (requires unrestricted access).
+    ls                  List the entries in the password datastore (requires unrestricted access).
     get                 Retrieve a secret as a whole.
 ```
 **Example:**

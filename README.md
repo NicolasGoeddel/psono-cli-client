@@ -66,7 +66,7 @@ Commands:
     info                Shows some information about the server.
     users               Shows all the users that are known to this account (requires unrestricted access).
     settings            Shows all the settings of this account (requires unrestricted access).
-    ls                  List the entries in the password datastore (requires unrestricted access).
+    ls                  List the entries in the password datastore (requires unrestricted access). Shared entries will automatically resolved so that it feels like a normal entry.
     get                 Retrieve a secret as a whole.
 ```
 **Example:**
@@ -116,12 +116,29 @@ psono \
 
 ### Subcommand `ls`
 ```
-usage: psono ls [-h] [--type {folder,item}]
+usage: psono ls [-h] [--type {folder,item}] [--recursive] [path]
+
+positional arguments:
+  path                  The path you want to list.
 
 options:
   -h, --help            show this help message and exit
   --type {folder,item}, -t {folder,item}
                         Filter by entry type.
+  --recursive, -r       Recursively show all subfolders and their items.
+```
+**Example:**
+List all entries of type `item` in the folder `My Folder`.
+```sh
+psono \
+    --endpoint "https://psono.example.com/server" \
+    --api-key-id "12345678-1234-1234-1234-123456789012" \
+    --api-key-private-key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" \
+    --api-key-secret-key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" \
+    --format 'plain' \
+    ls \
+    --type item \
+    'My Folder'
 ```
 
 ## Contributing

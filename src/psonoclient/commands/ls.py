@@ -13,7 +13,7 @@ class CommandLs(CommandBase):
         # ls [<folder>] [--type <folder|item>]
         cmd_ls = parser.add_parser(
             'ls',
-            help="List the entries in the password datastore (requires unrestricted access)."
+            help="List the entries in the password datastore (requires unrestricted access). Shared entries will automatically resolved so that it feels like a normal entry."
         )
         cmd_ls.add_argument(
             '--type', '-t',

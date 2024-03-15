@@ -13,6 +13,7 @@ from psonoclient.client import PsonoClient, PsonoApiError
 from psonoclient.misc import yprint
 from psonoclient.fields import FIELDS
 from psonoclient.parser import CliParser
+from psonoclient.commands import *
 from psonoclient import __version__
 
 class FormatWrapper():
@@ -70,8 +71,6 @@ class FormatWrapper():
             return self._value[self._subfield]
 
         return repr(self._value)
-
-
 
 def main():
     parser = CliParser()
@@ -163,24 +162,8 @@ def main():
                         output = FormatWrapper(secret)
 
         elif parser.parsed.command == 'ls':
-            output = []
-            if (parser.parsed.entry_type is None) or (parser.parsed.entry_type == 'folder'):
-                for folder in client.passwords['folders']:
-                    output.append({
-                        'name': folder['name'],
-                        'id': folder['id'],
-                        'shared': 'share_id' in folder
-                    })
-
-            if (parser.parsed.entry_type is None) or (parser.parsed.entry_type == 'item'):
-                for item in client.passwords['items']:
-                    output.append({
-                        'name': item['name'],
-                        'id': item['id'],
-                        'shared': 'share_id' in item
-                    })
-
-            output = FormatWrapper(output)
+            cmd = CommandLs(client, parser.parsed)
+            output = FormatWrapper(cmd.get())
 
         elif parser.parsed.command == 'users':
             output = FormatWrapper(client.users)
@@ -203,21 +186,6 @@ def main():
     if output:
         print(output.get(parser.parsed.format))
     sys.exit(error)
-
-    #yprint({'client._login_info': client._login_info})
-    #yprint({'client._user_secret_key': client._user_secret_key})
-
-    #datastores = client.datastores()
-
-    # user:     b81a4465-d256-4918-9d88-27a28c7bee0e
-    # password: 0c093744-7fbc-46e7-8b50-7f96e785166c
-    # settings: 6d785d8a-b5fb-4200-aed7-5da5b6fdadd9
-    #yprint(datastores['0c093744-7fbc-46e7-8b50-7f96e785166c'].read())
-
-    # print(client.get_secret('b2ef8273-7936-4163-a9af-237a813c8555')) #who-is-how
-    # print(client.get_secret('6c6d59c4-0a0c-423a-a909-30763d8b6ba2')) #zmbf
-
-    #print(format(client.datastores(), parser.parsed.format))
 
 if __name__ == '__main__':
     main()

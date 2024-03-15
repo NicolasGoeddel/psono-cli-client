@@ -403,3 +403,17 @@ class PsonoClient():
             )
 
             return json.loads(decrypted_secret)
+
+    def get_share(self, share):
+        encrypted_share = self._api(
+            'GET',
+            f"/share/{share['share_id']}/"
+        )
+
+        descrypted_share = self._decrypt_symmetric(
+            encrypted_share['data'],
+            encrypted_share['data_nonce'],
+            share['share_secret_key']
+        )
+
+        return json.loads(descrypted_share)

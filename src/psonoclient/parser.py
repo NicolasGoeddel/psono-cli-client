@@ -1,4 +1,5 @@
 import argparse
+from psonoclient.commands import CommandLs
 
 class CliParser():
     def __init__(self):
@@ -162,20 +163,8 @@ class CliParser():
             'settings',
             help="Shows all the settings of this account (requires unrestricted access)."
         )
+        CommandLs.add_cmd_parser(commands)
 
-        # ls [<folder>] [--type <folder|item>]
-        cmd_ls = commands.add_parser(
-            'ls',
-            help="List the entries in the password datastore (requires unrestricted access)."
-        )
-        cmd_ls.add_argument(
-            '--type', '-t',
-            action='store',
-            type=str,
-            help='Filter by entry type.',
-            choices=['folder', 'item'],
-            dest='entry_type'
-        )
         # get --secret <secret-id> | --id <id> | --field <field> | --password | --user | --url | -notes | --title
         cmd_get = commands.add_parser(
             'get',

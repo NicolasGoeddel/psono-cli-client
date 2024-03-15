@@ -169,7 +169,7 @@ class CliParser():
             help="List the entries in the password datastore (requires unrestricted access)."
         )
         cmd_ls.add_argument(
-            '--type', '-e',
+            '--type', '-t',
             action='store',
             type=str,
             help='Filter by entry type.',

@@ -120,7 +120,7 @@ usage: psono ls [-h] [--type {folder,item}]
 
 options:
   -h, --help            show this help message and exit
-  --type {folder,item}, -e {folder,item}
+  --type {folder,item}, -t {folder,item}
                         Filter by entry type.
 ```
 
